@@ -1,38 +1,32 @@
-bool isNameValid( string s){
-int n=str.length();
-int count=0;
-string vow="aeiou";
-string Vow="AEIOU";
-for(int i=0;i<n;i++){
+#include<bits/stdc++.h>
+using namespace std;
 
-if(s.find(vow)!=string.npos){
-count++;
+bool isNameValid( string str) {
+    
+    char vow[] = {'A', 'E', 'I', 'O', 'U'};
+    for (char vowel : vow) {
+        int count = 0;
+        for (char ch : str) {
+            if (toupper(ch) == vowel) {
+                count++;
+                if (count > 1) {
+                    return false; 
+  } }} }
+for (int i = 0; i < str.length() - 1; ++i) {
+        if (str[i] == 'S' && str[i + 1] == 'S') {
+     for (int j = i + 2; j < str.length(); ++j) {
+            if (str[j] == 'T') {
+                    return false;  
+                }
+        }
+        }}
 }
+int main() {
 
-if(count>1)return false;
+  string s;
+cin>>s;
 
-}
+cout<<isNameValid(s);
 
-
-bool check(string s)
-int i=0;
-int j=n-1;
-
-while(i<j){
-
-if(s[i]=="S"||s[j]=="S"){
-
-if(s[i+1]=="T";
-return false;
-}
-
-
-
-else {
-
-j--;
-}
-return false;
-}
-
+    return 0;
 }
