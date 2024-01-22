@@ -1,49 +1,36 @@
-int str(int n){
+#include<iostream>
+#include<cmath>
 
-string s=to_string(n);      //converting the number into string
+using namespace std;
 
-char temp;                  //temporary character
+int main() {
+   
+ int n;
+    cin >> n;
+int temp = n;
+    int count = 0;
+  while (temp > 0) {
+        temp /= 10;
+        count++;
+    }
 
-int n=s.length();           //length of the string
+  int div = 1;
+    for (int i = 1; i < count; ++i) {
+        div *= 10;
+    }
 
-temp=s[0];                   //here we are doing swapping
-s[0]=s[n-1];
-s[n-1]=temp;
+    int firstDigit = n / div;
+    int lastDigit = n % 10;
 
-}
-return stoi(s);              //returning the nym
-
-
---------------------------------------------------------------------------------
-
-
-int reverse(int n){
-
-int first;
-int second;
-
-int count;
-
-int second=n%10;
-
-while(n){
-n/10;
-count++;
-}
+   
+    int swapN = lastDigit * div;
+    swapN += n % div;
+    swapN -= lastDigit;
+    swapN += firstDigit;
 
 
+    cout <<swapN;
 
-while(n%10){
-first=n%10;
-n=n/10;
-}
-
-int number=n%10*10+first;
-int first_number=number%pow(10,count-1);
-
-int final= second*pow(10,count-1)+first_number;
-
-return final;
-
+    return 0;
 }
 
