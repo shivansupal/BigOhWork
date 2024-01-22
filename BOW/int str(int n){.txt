@@ -1,0 +1,49 @@
+int str(int n){
+
+string s=to_string(n);      //converting the number into string
+
+char temp;                  //temporary character
+
+int n=s.length();           //length of the string
+
+temp=s[0];                   //here we are doing swapping
+s[0]=s[n-1];
+s[n-1]=temp;
+
+}
+return stoi(s);              //returning the nym
+
+
+--------------------------------------------------------------------------------
+
+
+int reverse(int n){
+
+int first;
+int second;
+
+int count;
+
+int second=n%10;
+
+while(n){
+n/10;
+count++;
+}
+
+
+
+while(n%10){
+first=n%10;
+n=n/10;
+}
+
+int number=n%10*10+first;
+int first_number=number%pow(10,count-1);
+
+int final= second*pow(10,count-1)+first_number;
+
+return final;
+
+}
+

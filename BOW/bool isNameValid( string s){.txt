@@ -1,0 +1,38 @@
+bool isNameValid( string s){
+int n=str.length();
+int count=0;
+string vow="aeiou";
+string Vow="AEIOU";
+for(int i=0;i<n;i++){
+
+if(s.find(vow)!=string.npos){
+count++;
+}
+
+if(count>1)return false;
+
+}
+
+
+bool check(string s)
+int i=0;
+int j=n-1;
+
+while(i<j){
+
+if(s[i]=="S"||s[j]=="S"){
+
+if(s[i+1]=="T";
+return false;
+}
+
+
+
+else {
+
+j--;
+}
+return false;
+}
+
+}

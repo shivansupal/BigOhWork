@@ -1,0 +1,33 @@
+int number(int n){
+
+
+while(n%10){
+
+   bool s=check(n);
+   if(s)return true;
+}
+
+return false;
+
+}
+
+
+bool check(int n){
+for(int i=2;i<sqrt(n);i++){
+if(n%i==0)retrun false;
+}
+
+else
+
+return true;
+
+}
+
+
+
+int main()
+using namespace std;
+
+number(n-1);
+
+
