@@ -1,0 +1,58 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+bool findNumber(int n,int arr[],int target){
+    
+    int l,r;
+    sort(arr,arr+n);
+    
+    for(int i=0;i<n;i++){
+        
+        l=i+1;
+        r=n-1;
+        
+        while(l<r){
+            
+            
+            if(arr[i]+arr[l]+arr[r]){
+                
+                cout<<arr[i]<<","<<arr[l]<<","<<arr[r]<<endl;
+                
+                return true;
+            }
+            
+            else if(arr[i]+arr[l]+arr[r]<target){
+                
+                l++;
+            }
+            
+            else if(arr[i]+arr[l]+arr[r]>target){
+                
+                r--;
+            }
+            
+            else{
+                
+                return false;
+            }
+        }
+        
+    }
+    
+    
+}
+
+int main(){
+    
+    int target;
+    cin>>target;
+    
+    int n;
+    cin>>n;
+    int arr[n];
+    
+    findNumber(n,arr,target);
+ 
+return 0;   
+}
