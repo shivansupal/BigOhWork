@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool isNameValid( string str) {
+    
+    char vow[]={'A','E','I','O','U'};
+    for (char vowel:vow) {
+        int count= 0;
+        for(char ch:str) {
+            if(toupper(ch)==vowel) {
+                count++;
+                if (count>1) {
+                    return false; 
+  } }} }
+for (int i=0;i<str.length()-1;++i){
+        if(str[i]=='S'&&str[i+2]=='S') {
+     for (int j=i+1;j<str.length();++j) {
+            if (str[j] =='T') {
+                    return false;  
+                }
+        }
+        }}
+}
+int main() {
+
+  string s;
+cin>>s;
+
+cout<<isNameValid(s);
+
+    return 0;
+}

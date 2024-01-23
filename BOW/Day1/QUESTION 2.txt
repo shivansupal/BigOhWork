@@ -1,0 +1,36 @@
+#include<iostream>
+#include<cmath>
+
+using namespace std;
+
+int main() {
+   
+ int n;
+    cin >> n;
+int temp = n;
+    int count = 0;
+  while(temp>0) {
+        temp/=10;
+        count++;
+    }
+
+  int div=1;
+    for(int i=1;i<count;++i) {
+        div*=10;
+    }
+
+    int firstDigit=n/div;
+    int lastDigit= n%10;
+
+   
+    int swapN =lastDigit*div;
+    swapN+=n%div;
+    swapN-=lastDigit;
+    swapN+=firstDigit;
+
+
+    cout<<swapN;
+
+    return 0;
+}
+
