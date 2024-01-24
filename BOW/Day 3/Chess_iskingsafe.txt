@@ -1,0 +1,276 @@
+// C++ program to implement the chess problem
+#include <bits/stdc++.h>
+using namespace std;
+
+// Checking if the indices are within the chess baord or not
+bool inBounds(int row, int column)
+{
+// Checking boundary conditions
+return row >= 0 && column < 8 && row >= 0 && column < 8;
+
+}
+bool lookFork(char board[][8], char c, int row, int column)
+{
+    
+// Storing all possible moves of the king
+
+int x[] = {-1, -1, -1, 0, 0, 1, 1, 1};
+int y[] = {-1, 0, 1, -1, 1, -1, 0, 1};
+
+for (int k = 0; k < 8; k++) 
+{
+	// incrementing index values
+	int m = row + x[k];
+	int n = column + y[k];
+
+	// checking boundary conditions and character match
+	if (inBounds(m, n) && board[m][n] == c)
+	
+	return true;
+}
+return false;
+}
+
+// Function to check if bishop can attack the king
+bool lookForb(char board[][8], char c, int row, int column)
+{
+// Check the lower right diagonal
+int k = 0;
+
+while (inBounds(row + ++k, column + k)) 
+{
+	if (board[row + k][column + k] == c)
+	return true;
+	if (board[row + k][column + k] != '-')
+	break;
+}
+
+// Check the lower left diagonal
+k = 0;
+while (inBounds(row + ++k, column - k)) 
+{
+
+	if (board[row + k][column - k] == c)
+	return true;
+	if (board[row + k][column - k] != '-')
+	break;
+}
+
+// Check the upper right diagonal
+k = 0;
+while (inBounds(row - ++k, column + k)) 
+{
+	if (board[row - k][column + k] == c)
+	return true;
+	if (board[row - k][column + k] != '-')
+	break;
+}
+
+// Check the upper left diagonal
+k = 0;
+while (inBounds(row - ++k, column - k))
+{
+	if (board[row - k][column - k] == c)
+	return true;
+	if (board[row - k][column - k] != '-')
+	break;
+}
+
+return false;
+}
+
+// Check if rook
+bool lookForr(char board[][8], 	char c, int row,int column)
+{
+// Check downwards
+int k = 0;
+while (inBounds(row+ ++k, column)) 
+{
+	if (board[row+ k][column] == c)
+	return true;
+	if (board[row + k][column] != '-')
+	break;
+}
+
+// Check upwards
+k = 0;
+while (inBounds(row + --k, column)) 
+{
+	if (board[row + k][column] == c)
+	return true;
+	if (board[row + k][column] != '-')
+	break;
+}
+
+// Check right
+k = 0;
+while (inBounds(row, column + ++k)) 
+{
+	if (board[row][column + k] == c)
+	return true;
+	if (board[row][column + k] != '-')
+	break;
+}
+
+// Check left
+k = 0;
+while (inBounds(row, column + --k)) 
+{
+	if (board[row][column + k] == c)
+	return true;
+	if (board[row][column + k] != '-')
+	break;
+}
+return false;
+}
+
+// Function to check if Queen can attack the King
+bool lookForq(char board[][8], 	char c, int row, int column)
+{
+// Queen's moves are a combination of both the Bishop and the Rook
+if (lookForb(board, c, row, column) || lookForr(board, c, row, column))
+	return true;
+
+return false;
+}
+
+// Check if the knight can attack the king
+bool lookForn(char board[][8], char c, int row, int column)
+{
+    
+// All possible moves of the knight
+int x[] = {2, 2, -2, -2, 1, 1, -1, -1};
+int y[] = {1, -1, 1, -1, 2, -2, 2, -2};
+
+for (int k = 0; k < 8; k++) 
+{
+	// Incrementing index values
+	int m = row + x[k];
+	int n = column + y[k];
+
+	// Checking boundary conditions and character match
+	if (inBounds(m, n) && board[m][n] == c)
+	return true;
+}
+return false;
+}
+
+// Function to check if pawn can attack the king
+bool lookForp(char board[][8], char c, int row, int column)
+{
+char lookFor;
+if (isupper(c)) 
+{
+	// Check for white pawn
+	lookFor = 'P';
+	if (inBounds(row+ 1, column - 1) && board[row + 1][column - 1] == lookFor)
+	return true;
+
+	if (inBounds(row+ 1, column + 1) && board[row+ 1][column + 1] == lookFor)
+	return true;
+}
+else
+{
+	// Check for black pawn
+	lookFor = 'p';
+	if (inBounds(row - 1, column - 1) && board[row - 1][column - 1] == lookFor)
+	return true;
+	if (inBounds(row - 1, column + 1) && board[row - 1][column + 1] == lookFor)
+	return true;
+}
+return false;
+}
+
+// Function to check if any  of the two kings is unsafe or not
+int checkBoard(char board[][8])
+{
+// Find the position of both the kings
+for (int row = 0; row < 8; row++) 
+{
+	for (int column= 0; column < 8; column++) 
+	{
+	// Check for all pieces which can attack White King
+	if (board[row][column] == 'k') 
+	{
+		// Check for Knight
+		if (lookForn(board, 'N', row, column))
+		return 1;
+
+		// Check for Pawn
+		if (lookForp(board, 'P', row, column))
+		return 1;
+
+		// Check for Rook
+		if (lookForr(board, 'R', row, column))
+		return 1;
+
+		// Check for Bishop
+		if (lookForb(board, 'B', row, column))
+		return 1;
+
+		// Check for Queen
+		if (lookForq(board, 'Q', row, column))
+		return 1;
+
+		// Check for King
+		if (lookFork(board, 'K', row, column))
+		return 1;
+	}
+
+	// Check for all pieces which can attack Black King
+	if (board[row][column] == 'K') 
+	{
+		// Check for Knight
+		if (lookForn(board, 'n', row, column))
+		return 2;
+
+		// Check for Pawn
+		if (lookForp(board, 'p', row, column))
+		return 2;
+
+		// Check for Rook
+		if (lookForr(board, 'r', row, column))
+		return 2;
+
+		// Check for Bishop
+		if (lookForb(board,'b', row, column))
+		return 2;
+
+		// Check for Queen
+		if (lookForq(board,'q', row, column))
+		return 2;
+
+		// Check for King
+		if (lookFork(board,'k', row, column))
+		
+		return 2;
+	}
+	}
+}
+return 0;
+}
+
+// Driver Code
+int main()
+{
+// Chessboard 
+char board[][8] =  {{'-', '-', '-', 'k', '-', '-', '-', '-'},
+					{'p', 'p', 'p', '-', 'p', 'p', 'p', 'p'},
+					{'-', '-', '-', '-', '-', 'b', '-', '-'},
+					{ '-', '-', '-', '-', '-', '-', '-', '-'},
+					{'-', '-', '-', '-', '-', '-', '-', '-'}, 
+					{'-', '-', '-', '-', '-', '-', '-', '-'}, 
+					{'P', '-', 'P', 'P', 'P', 'P', 'P', 'P'}, 
+					{'K', '-', '-', '-', '-', '-', '-', '-'}};
+
+if (checkBoard(board) == 0) //if no one is killing the king then No king is in danger
+	cout << ("No king in danger");
+
+else if (checkBoard(board) == 1)  //if  returned value is 1 then the king is in danger(White)
+	cout << ("White king in danger");
+
+else
+	cout << ("Black king in danger");  //if returned value is 2 then black king is in danger
+}
+
+

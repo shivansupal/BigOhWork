@@ -1,0 +1,85 @@
+/*Program for chechking Sudoku is valid or not*/
+//Universal header file to include all header files in it//
+
+#include<bits/stdc++.h>
+using namespace std;//using namespace std for standard input and output
+
+
+/*bool isValidSudoku is a function that will return 
+true or false that the sudoku is valid or not*/
+
+bool isValidSudoku(vector<vector<char>>& board) {
+    
+        unordered_map <char, int> eachBox;    //eachbox will check 3*3 box in our sudoku
+        unordered_map <char, int> row;       //row will check all the elements row_wise
+        unordered_map <char, int> column ;   //column will check all the elements column wise
+        
+        int j = 0 ;
+        int i = 0 ; 
+        
+/*First let us check whether the number is repeated in each row and column*/
+      
+
+        for( i =0 ; i < 9 ;i++){
+            
+            for( j=0 ; j< 9 ;j++){
+                
+                if(board[i][j] != '.'){   //checking for row
+                    
+                    row[board[i][j]]++;   
+                    
+                }
+                
+                if(board[j][i]!='.'){     //checking for column
+                    
+                    column[board[j][i]]++;
+                    
+                }
+                
+                if(row[board[i][j]]>1) return false;   //if number is repeated in column then it's invalid
+                
+                if(column[board[j][i]]>1) return false ;  //if number is repeated in row then it's invalid
+                
+            }
+            
+            row.clear();    //clear the map of row  
+            
+            column.clear();  //clear the map of column
+        }
+        
+        /*Checking for each box now*/
+        
+        for(i=0 ; i < 9 ;i+=3){
+            
+            for(j=0 ; j <9 ;j+=3){
+                
+                eachBox.clear(); 
+                
+                for(int x = i ; x < i+3 ; x++){
+                    
+                    for(int y = j ; y < j+3; y++){
+                        
+                        if(board[x][y]!='.'){
+                            
+                            eachBox[board[x][y]]++;    //each number appear twice in a box, then it's invalid//
+                            
+                        }
+                        
+                        if(eachBox[board[x][y]]>1) return false ;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+
+int main(){
+    
+    
+    
+    
+    
+    
+    retrurn 0;
+}
