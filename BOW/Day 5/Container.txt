@@ -1,0 +1,59 @@
+//Driver code
+
+#include<bits/stdc++.h>
+using namespace std;
+
+//function to return max amount of water container can store
+
+int max_water_trap (int Array[], int length)
+{
+	int left = 0;    //taking left iterator to traverse from left
+	
+	int right = length -1;   //taking right iterator form last as right
+	 
+	int max_trap = 0;   //max_water variable will store the maximum water
+	
+	while (left < right)   //condition working from left to right
+	
+	{
+		
+		max_trap = max(max_trap, min(Array[left], Array[right]) * (right - left));  //calculating the max trap container can store
+						
+			if (Array[left] > Array[right])
+			
+				right = right- 1 ;    //we want max water hence neglecting the smaller one
+				
+			else
+			
+				left = left + 1;    //for max water moving the iterator
+				
+	}
+	
+	return max_trap;   // return the max_trap water
+}
+
+int main(){
+    
+    int length;  //user enter array length
+    
+    cout<<"Enter the Length of the Array"<<endl;  
+    
+    cin>>length;  //accepting the array length
+    
+    int arr[length];  //array for storing the elements
+    
+    cout<<"Enter the elements of the array "<<endl;
+    
+    for(int i=0 ; i<length;i++){
+        
+        cin>>arr[i];
+        
+    }
+    
+    cout<<"Maximam water that can be trapped = "<<max_water_trap(arr, length);
+    
+    //this function will return the max amount of water container can store
+    
+     return 0;
+    
+}
