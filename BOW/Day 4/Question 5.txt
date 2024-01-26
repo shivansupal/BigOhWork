@@ -1,0 +1,103 @@
+//Driver code
+#include <iostream> 
+#include <vector>
+
+//using namespace std for output and input
+
+using namespace std;
+
+// transpose matrix function
+    
+    void transpose(vector<vector<int>>&matrix){  //this function will transpose the matrix
+        
+        for(int row=0;row<3;row++){
+            
+            for(int column=row;column<3;column++){
+                
+                int temp=matrix[row][column];
+                
+                matrix[row][column]=matrix[column][row];
+                
+                matrix[column][row]=temp;
+                
+                
+            }
+        }
+        
+    }
+    
+//rotating the transposed matrix----------------------------------------------
+
+    void rotate(vector<vector<int>>&matrix){
+        
+        for(int row=0;row<3;row++){
+            
+            for(int column=0;column<3/2;column++){
+                
+                int temp=matrix[row][column];
+                
+                matrix[row][column]=matrix[row][3-column-1];
+                
+                matrix[row][3-column-1]=temp;
+            }
+        }
+        
+    }
+
+
+//----------------------------------------------------------------------------
+
+void printmatrix(vector<vector<int>>matrix){   //this function will print the matrix
+    
+    	
+	cout << "Vector contents are: \n"; 
+	
+	for(int start=0;start<3;++start) {     //start is pointing to ith row
+	    
+		for(int end=0;end<3;++end){        //end is pointing to jth column
+		    
+			cout << matrix[start][end] << " ";   
+			
+		} 
+		
+		    cout << "\n"; 
+	} 
+}
+
+//End of print function
+
+//---------------------------------main function-----------------------------
+
+int main() { 
+    
+	// Vector of vectors 
+	
+	vector<vector<int>> matrix;   //2d matrix and vector for dynamic allocation
+	
+	for(int start=0;start<3;++start) { 
+	    
+		vector<int> row;  //Create a vector          
+		
+		for(int end=0;end<3;++end){
+		    
+			int value; 
+			
+			cin >> value;
+			
+			row.push_back(value); 
+		} 
+		
+		matrix.push_back(row); 
+		
+	} 
+
+	
+    transpose(matrix);          //calling transpose function
+    
+    rotate(matrix);             //calling rotate function
+  
+    printmatrix(matrix);        //calling print function
+	
+	
+	return 0; 
+} 

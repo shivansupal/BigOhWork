@@ -1,0 +1,109 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+//-----------------------------------------------------------------------------//
+
+bool findelement(vector<vector<int>> arr, int target)
+
+{
+    //if(target < arr[0][0] || target > arr[2][2]) return false;//
+    
+    int row = 0;
+    
+    int col = 2;
+    
+    while (row < col) {
+        
+        if (arr[row][col] == target) {
+            
+            return true;
+        }
+ 
+        // Target lies in further row
+        
+        if (arr[row][col] < target) {
+            
+            row++;
+        }
+        
+        // Target lies in previous column
+        
+        else {
+            
+            col--;
+        }
+    }
+    
+    return false;
+}
+//----------------------------------------------------------------------------//
+
+int main(){
+    
+    vector<vector<int>>matrix;
+    
+    int target;
+    
+    cout<<"Enter the matrix Elements = " << endl;
+    
+    for(int row=0;row<3;row++){
+        
+        vector<int>subvector;         //vector for taking element and pushing in 2d vector
+        
+        for(int column=0;column<3;column++){
+            
+          int value;
+            
+            cin>>value;    //taking input from the user for input
+            
+            subvector.push_back(value);         
+            
+        }
+        
+        matrix.push_back(subvector);  //push_back element in 2D matrix
+    }
+    
+    cout<<"Enter the elements which you want to search in matrix"<<endl;
+    
+    cin>>target;
+    
+    bool ans = findelement(matrix, target);
+ 
+//------------------this code is to return the index position------------------
+ 
+    /*cout << "Element found at index: [";
+    
+    for (int start = 0; start < ans.size(); start++) {
+        
+        if (start == ans.size() - 1)
+        
+            cout << ans[start];
+            
+        else
+            
+            cout << ans[start] << ", ";
+            
+    }
+    cout << "]";*/
+    
+    /*vector<int>answer=findelement(matrix,target);
+    
+    for(int first=0;first<answer.size();first++){
+        
+        cout<<answer[first]<<",";
+    }*/
+    
+    
+    if(ans == true){
+        
+        cout<<"Element found in the matrix "<<endl;
+        
+    }
+    
+    else{
+        
+        cout<<"Element is not present in the matrix"<<endl;
+    }
+    
+    return 0;
+}
