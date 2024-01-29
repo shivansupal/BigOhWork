@@ -91,16 +91,18 @@ int check()//checks if anyone is winning.
 
 }
 
-void pin()//takes input from player
+//This function will take input from the player--------------------------
+
+void pin()  //takes input from player
 {
-    int r=0,c=0;
+    int row =0, column = 0;
     cout<<"Enter row: ";
-    cin>>r;
+    cin>> row;
     cout<<"Enter column: ";
-    cin>>c;
-    r--;
-    c--;
-    if(r>2||c>2||r<0||c<0)
+    cin>> column;
+    row--;
+    ccolumn--;
+    if(row > 2 || column > 2 || row<0 || column <0)
     {
         strcpy(str,"Enter correct value ");
         strcat(str,name);
@@ -108,20 +110,24 @@ void pin()//takes input from player
         puts(str);
         pin();
     }
-    else if(a[r][c]!=0)
+    else if(a[row][column]!=0)
     {
         cout<<"It is already filled.\n";
         pin();
     }
     else
-        a[r][c]=t;
+        a[row][column]=t;
 }
 
-int defend(int c, int p, int b)
+//This function will defend the computer from lossing the game -------------------------
+
+int defend(int column , int player , int best_chance)
 {
-    if(b<3)
+    if(best_chance <3)
         return 0;
-    else if(a[0][0]+a[1][1]+a[2][2]==2*c&&a[0][0]!=p&&a[1][1]!=p&&a[2][2]!=p)
+
+    else if(a[0][0]+a[1][1]+a[2][2]==2*column && a [0][0]!= player && a [1][1]!= player && a[2][2]!= player)
+
     {
         for(int i=0;i<3;i++)
         {
@@ -133,7 +139,7 @@ int defend(int c, int p, int b)
             }
         }
     }
-    else if(a[0][2]+a[1][1]+a[2][0]==2*c&&a[0][2]!=p&&a[1][1]!=p&&a[2][0]!=p)
+    else if(a[0][2]+a[1][1]+a[2][0]==2* column && a[0][2]!= player && a[1][1]!= player && a[2][0]!=player)
     {
         for(int i=0;i<3;i++)
         {
@@ -179,6 +185,8 @@ int defend(int c, int p, int b)
     }
     return 0;
 }
+
+---This function will attack the opponent and find move to attack---------
 
 int attack()
 {
