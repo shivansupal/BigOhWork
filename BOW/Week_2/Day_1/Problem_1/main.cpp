@@ -1,11 +1,16 @@
+//Driver code
+
 #include <iostream>
 #include <vector>
 using namespace std;
 
+//Including HPP files of all class
 #include "MP.hpp"
 #include "minister.hpp"
 #include "pm.hpp"
 #include " commissioner.hpp"
+
+//main function execution start here
 
 int main() {
     MP mp("Constituency1");
