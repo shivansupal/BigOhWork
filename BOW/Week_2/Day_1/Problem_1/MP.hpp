@@ -1,6 +1,8 @@
+//Driver code
 #include <bits/stdc++.h>
 using namespace std;
 
+//MP class
 class MP {
 protected:
     string winningConstituency;
