@@ -79,8 +79,6 @@ public:
         for (auto& item : bookItems) {
             if (item.bookId == bookId && !item.available) {
 
-                // Additional logic for renewal (e.g., updating due date) can be added
-
                 cout << "Book renewed successfully." << endl;
 
                 return;
