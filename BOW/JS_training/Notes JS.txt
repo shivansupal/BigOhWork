@@ -1,0 +1,97 @@
+Use of var , let and const :
+-----------------------------
+
+Var: 
+----
+
+* Scope: Either the function in which it is declared or the global scope if it's declared outside any function
+
+* We should use var if we want function-scoped variables that can be hoisted.
+
+let:
+-----
+
+* Scope : The scope of a let variable is limited to the block in which it is declared.
+
+* We should use let if we want block-scoped variables that can be reassigned.
+
+const:
+-------
+* Scope : Variables declared with const are block-scoped, just like let, but they have an additional characteristic, their value cannot be reassigned once it has been assigned. 
+
+* We should use const if you want block-scoped variables that are constant and cannot be reassigned.
+
+
+
+Execution Context:
+--------------------------------------------
+
+JavaScript execution context is a crucial part of understanding how JavaScript works behind the scenes.
+It determines the environment in which code is executed and what variables and functions are available to use.
+
+The creation phase includes creating the global and function execution contexts, creating the scope chain, and allocating memories for the variables and functions. 
+During the execution phase, the JavaScript engine executes the code line by line. This includes evaluating and executing statements.
+Execution context is the concept for describing the internal working of a code. In JavaScript, the environment that enables the JavaScript code to get executed is what we call JavaScript Execution Context.
+It is the execution context that decides which code section has access to the functions, variables, and objects used in the code. During the execution context,
+the specific code gets parsed line by line then the variables and functions are stored in the memory. 
+An execution context is similar to a container that stores variables, and the code gets evaluated and then executed. Thus, it is the execution context that provides an environment for the specific code to get executed.
+
+There are three types of Execution Context:
+1. Global Execution Context
+2.Functional Execution Context
+3.Eval Execution Context
+
+Event Loop: 
+--------------------------------------------
+
+Call Stack:
+------------
+JavaScript uses a call stack to keep track of the currently executing function (where the program is in its execution).
+
+
+Callback Queue:
+---------------
+Asynchronous operations, such as I/O operations or timers, are handled by the browser or Node.js runtime. When these operations are complete, corresponding functions (callbacks) are placed in the callback queue.
+
+Event Loop:
+-----------
+The event loop continuously checks the call stack and the callback queue. If the call stack is empty, it takes the first function from the callback queue and pushes it onto the call stack for execution.
+
+Execution:
+-----------
+The function on top of the call stack is executed. If this function contains asynchronous code, it might initiate further asynchronous operations.
+
+Callback Execution:
+-------------------
+When an asynchronous operation is complete, its callback is placed in the callback queue.
+
+Repeat:
+--------
+The event loop continues this process, ensuring that the call stack is always empty before taking the next function from the callback queue.
+
+
+
+
+Truthy and falsy value
+----------------------
+
+A falsy (sometimes written falsey) value is a value that is considered false when encountered in a Boolean context.
+Ex: Null, undefined, false, Nan, 0 , -0, 0n, "", document.all
+
+Truthy Value:
+In JavaScript, a truthy value is a value that is considered true when encountered in a Boolean context. 
+All values are truthy unless they are defined as falsy. 
+That is, all values are truthy except false, 0, -0, 0n, "", null, undefined, NaN, and document.all.
+
+
+console.log(true && "dog") = dog
+console.log(false - true ) = -1
+console.log(1 + "1") = 11
+console.log("1"+1) = 11
+console.log("1" - 1) = 0
+console.log(1 - "1" ) = 0
+console.log(0 && "abc") = 0
+console.log("abc" && -1) = -1
+console.log ( "abc" && 0) = 0
+console.log(false || "abc" ) = abd
+console.log ( undefined || "abc" ) = abc
