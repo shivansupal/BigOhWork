@@ -1,0 +1,337 @@
+Use of var , let and const :
+---------------------------
+
+Var: 
+----
+
+* Scope: Either the function in which it is declared or the global scope if it's declared outside any function
+
+* We should use var if we want function-scoped variables that can be hoisted.
+
+let:
+-----
+
+* Scope : The scope of a let variable is limited to the block in which it is declared.
+
+* We should use let if we want block-scoped variables that can be reassigned.
+
+const:
+-------
+* Scope : Variables declared with const are block-scoped, just like let, but they have an additional characteristic, their value cannot be reassigned once it has been assigned. 
+
+* We should use const if you want block-scoped variables that are constant and cannot be reassigned.
+
+
+
+Execution Context:
+--------------------------------------------
+
+JavaScript execution context is a crucial part of understanding how JavaScript works behind the scenes.
+It determines the environment in which code is executed and what variables and functions are available to use.
+
+The creation phase includes creating the global and function execution contexts, creating the scope chain, and allocating memories for the variables and functions. 
+During the execution phase, the JavaScript engine executes the code line by line. This includes evaluating and executing statements.
+Execution context is the concept for describing the internal working of a code. In JavaScript, the environment that enables the JavaScript code to get executed is what we call JavaScript Execution Context.
+It is the execution context that decides which code section has access to the functions, variables, and objects used in the code. During the execution context,
+the specific code gets parsed line by line then the variables and functions are stored in the memory. 
+An execution context is similar to a container that stores variables, and the code gets evaluated and then executed. Thus, it is the execution context that provides an environment for the specific code to get executed.
+
+There are three types of Execution Context:
+1. Global Execution Context
+2.Functional Execution Context
+3.Eval Execution Context
+
+Event Loop: 
+--------------------------------------------
+
+Call Stack:
+------------
+JavaScript uses a call stack to keep track of the currently executing function (where the program is in its execution).
+
+
+Callback Queue:
+---------------
+Asynchronous operations, such as I/O operations or timers, are handled by the browser or Node.js runtime. When these operations are complete, corresponding functions (callbacks) are placed in the callback queue.
+
+Event Loop:
+-----------
+The event loop continuously checks the call stack and the callback queue. If the call stack is empty, it takes the first function from the callback queue and pushes it onto the call stack for execution.
+
+Execution:
+-----------
+The function on top of the call stack is executed. If this function contains asynchronous code, it might initiate further asynchronous operations.
+
+Callback Execution:
+-------------------
+When an asynchronous operation is complete, its callback is placed in the callback queue.
+
+Repeat:
+--------
+The event loop continues this process, ensuring that the call stack is always empty before taking the next function from the callback queue.
+
+
+
+
+Truthy and falsy value
+----------------------
+
+A falsy (sometimes written falsey) value is a value that is considered false when encountered in a Boolean context.
+Ex: Null, undefined, false, Nan, 0 , -0, 0n, "", document.all
+
+Truthy Value:
+In JavaScript, a truthy value is a value that is considered true when encountered in a Boolean context. 
+All values are truthy unless they are defined as falsy. 
+That is, all values are truthy except false, 0, -0, 0n, "", null, undefined, NaN, and document.all.
+
+
+console.log(true && "dog") = dog
+console.log(false - true ) = -1
+console.log(1 + "1") = 11
+console.log("1"+1) = 11
+console.log("1" - 1) = 0
+console.log(1 - "1" ) = 0
+console.log(0 && "abc") = 0
+console.log("abc" && -1) = -1
+console.log ( "abc" && 0) = 0
+console.log(false || "abc" ) = abd
+console.log ( undefined || "abc" ) = abc
+
+
+Promises:
+----------
+Early we are the passing the function to another function. Now we are attaching the function to the promise the object .Promise object is the placeholder which filled from 
+async  operational later by value. A container for future value .A promise is the object that represents the eventual completion or failure of an asynchronus operation to solve the 
+issue of the callback hell and inversion of control. A promise can be into three states 
+
+1. Fulfilled 
+2. Rejected  
+3. Pending 
+
+
+Higher Order Function: 
+----------------------
+A function that returns a function or passing the another function as an argument that is called higher order function.  
+
+Example: 
+--------
+setTimeout(()=> 
+{ 
+console.log("Run after 2 second"); 
+},2000); 
+function greet(prefix) { 
+return function(name) { 
+console.log(prefix + " " + name); 
+}; 
+} 
+------------Output----------------
+const sayHello = greet("Hello"); 
+const sayHi = greet("Hi"); 
+sayHello("Shivansu"); // Output: Hello Shivansu
+sayHi("Manu"); // Output: Hi Manu
+
+
+
+
+CallBack Function :  
+-------------------
+-> JavaScript is single threaded and sync single threaded language  
+->CallBack helps to write the async code in javascript 
+->In javascript ,callback function is a function which passed as arguments to the another 
+function and executed after the specific task has been completed.
+->Callback function used in the scenario in which we want a particular task is happened after the another task like the 
+fetching the data from server or wait for the user input.
+
+Example: 
+--------
+
+console.log("Task Starting"); 
+setTimeout(function() 
+{ 
+console.log("Task Working"); 
+setTimeout(function() 
+{ 
+console.log("Task Done"); 
+},10000); 
+},1000); 
+
+----------------------------------------------------------------
+Array Methods:                                                 |
+----------------------------------------------------------------
+
+-> JavaScript Array length:
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+let size = fruits.length;  
+
+Output -> 4
+
+->JavaScript Array toString():
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+document.getElementById("demo").innerHTML = fruits.toString();
+
+Output -> Banana,Orange,Apple,Mango
+
+-> JavaScript Array at() :
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+let fruit = fruits.at(2);
+
+Output-> Apple
+
+-> Popping and Pushing
+-> JavaScript Array pop()
+The pop() method removes the last element from an array:
+
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.pop();    
+
+Output -> Banana,Orange,Apple
+
+-----------------------------------------------------------------------
+Shift and unshift are used to insert and delete element from the last  |
+------------------------------------------------------------------------
+
+
+-> JavaScript Array map()
+-------------------------
+
+Return a new array with the square root of all element values:
+
+const numbers = [4, 9, 16, 25];
+const newArr = numbers.map(Math.sqrt)
+
+Output: 2,3,4,5
+
+---------------------------------------------------------------------------
+Important Point ->                                                        |
+map() creates a new array from calling a function for every array element. |
+                                                                           |
+map() does not execute the function for empty elements.                    |
+                                                                           |
+map() does not change the original array.                                  |
+                                                                           |
+----------------------------------------------------------------------------
+
+
+-----------------------------------------------------------------------------------------------------
+-> JavaScript Array filter()
+----------------------------
+The filter() method creates a new array filled with elements that pass a test provided by a function.
+
+The filter() method does not execute the function for empty elements.
+
+The filter() method does not change the original array.
+-----------------------------------------------------------------------------------------------------
+
+const ages = [32, 33, 16, 40];
+const result = ages.filter(checkAdult);
+
+function checkAdult(age) {
+  return age >= 18;
+}
+
+Output-> 32, 33, 40
+
+JavaScript Array forEach()->
+
+const fruits = ["apple", "orange", "cherry"];
+fruits.forEach(myFunction);
+
+Output-> 
+0: apple
+1: orange
+2: cherry
+
+------------------------------------------------------------------------------------
+The forEach() method calls a function for each element in an array.
+
+The forEach() method is not executed for empty elements.
+------------------------------------------------------------------------------------
+
+JavaScript Array includes():
+
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.includes("Mango");
+
+Output-> true
+
+------------------------------------------------------------------------------------
+The includes() method returns true if an array contains a specified value.
+
+The includes() method returns false if the value is not found.
+
+The includes() method is case sensitive.
+------------------------------------------------------------------------------------
+
+Syntax:
+-------
+array.includes(element, start)
+element	Required: The value to search for.
+start (Optional):Start position. Default is 0.
+
+
+JavaScript Array reduce():
+----------------------------------------------------------------------------------------
+The reduce() method executes a reducer function for array element.                     |
+The reduce() method returns a single value: the function's accumulated result.         |
+The reduce() method does not execute the function for empty array elements.            |
+The reduce() method does not change the original array.                                |
+----------------------------------------------------------------------------------------
+
+const numbers = [175, 50, 25];
+
+document.getElementById("demo").innerHTML = numbers.reduce(myFunc);
+
+function myFunc(total, num) {
+  return total - num;
+}
+
+Output-> 100                    
+
+
+-------------------------------------Day 4 Topics----------------------------------------
+-> Prototype
+-> Promises
+-> Call Back
+
+Promises:
+---------
+JavaScript Promise are easy to manage when dealing with multiple asynchronous operations where 
+callbacks can create callback hell leading to unmanageable code. 
+Prior to promises events and callback functions were used but they had limited functionalities and 
+created unmanageable code.
+Multiple callback functions would create callback hell that leads to unmanageable code. 
+Promises are used to handle asynchronous operations in JavaScript.
+
+
+Prototype:
+----------
+
+All JavaScript objects inherit properties and methods from a prototype.
+The JavaScript prototype property allows you to add new properties to object constructors:
+
+function Person(first, last, age, eyecolor) {
+  this.firstName = first;
+  this.lastName = last;
+  this.age = age;
+  this.eyeColor = eyecolor;
+}
+
+Person.prototype.nationality = "English";
+
+
+Difference between Arrow function and Regular function
+------------------------------------------------------
+
+1->Use of this keyword: Unlike regular functions, arrow functions do not have their own this. 
+2-> Availability of arguments objects: Arguments objects are not available in arrow functions, 
+but are available in regular functions.
+3->Using new keyword: Regular functions created using function declarations or expressions are ‘constructible’ and ‘callable’. 
+Since regular functions are constructible, they can be called using the ‘new’ keyword. 
+However, the arrow functions are only ‘callable’ and not constructible.
+Thus, we will get a run-time error on trying to construct a non-constructible arrow function using the new keyword.
+4->Hoisting will give reference error if we call arrow function before declaration.
+
+
+------------------------------------------------------------------------------
+Primitve data types are always stored in Stack , hence copy is always shared
+Non- Primitve data types are always in stored in heap, copy is referenced
+------------------------------------------------------------------------------
