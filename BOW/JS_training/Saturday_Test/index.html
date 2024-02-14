@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link rel="stylesheet" href="style.css">
+    <title>Saturday Test</title>
+
+</head>
+ 
+<body>
+    
+    <!-- Main Container -->
+    <div class="main">
+
+        <!-- Title -->
+        <h1>Saturday Test</h1>
+
+        <!-- Search Image Section -->
+        <div class="search-image">
+            <input type="text" id="searchImageInput" placeholder="Search Image by Author...">
+            <button id="searchImageButton" onclick="searchImages()">Search</button>
+        </div>
+        
+     
+        <!-- Sort and Filter Section -->
+        <div class="sort-filter">
+            <label class="sort-label" for="sortFilter">Sort:</label>
+            <select id="sortFilter" onchange="searchImages()">
+                <option value="asc" selected>Alphabetical Ascending</option>
+                <option value="desc">Alphabetical Descending</option>
+            </select>
+        </div>
+
+        <br>
+
+        <!-- Offset Section -->
+        <div class="offset-container">
+            <label for="offset">Pages per Screen:</label>
+            <select id="offset" onchange="setOffset()">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+            </select>
+        </div>
+
+        <br>
+
+        <div class="container">
+        <!-- Image Container -->
+        <div class="image-container" id="imageContainer">
+            <!-- Images will be added here dynamically -->
+        </div>
+    </div>
+
+        <!-- Pagination Section -->
+        <div class="pagination" id="paginationContainer"></div>
+
+        <!-- Liked Images Section -->
+        <h2>Liked Images</h2>
+        <div class="liked-images" id="likedImagesContainer">
+            <!-- Liked Images will be added here dynamically -->
+        </div>
+    </div>
+   
+    <script src="script.js"></script>
+    
+</body>
+</html>
